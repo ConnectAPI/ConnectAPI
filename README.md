@@ -2,9 +2,8 @@
 Build your backend with components
 
 
-## What do we do?
+### What we want?
 Our goal is to create a system that allows you to set up your backend with a few clicks.
-
 
 ### installation
 ```
@@ -13,7 +12,7 @@ $> docker run -it --rm \
     --entrypoint="install" \
     apiconnect/apiconnect:latest
 ```
-Once the Docker installation completes, go to http://localhost to access the system dashboard from your browser. Please note that on non-Linux native hosts, the server might take a few minutes to start after installation completes.
+Once the Docker installation completes an HTTP url for the dashboard will be showen on the console, enter it to manage your system.
 
 
 ### How it works (from the side of a service writer)?
