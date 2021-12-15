@@ -32,7 +32,7 @@ You now have a service on the ConnectAPI marketplace that anyone can use in thei
 OR use the dedicated auto-generated library.
 
 
-#### User story
+### User story
 1. Backend developer creates some API and OpenAPI spec for the API and uploads docker image of the API to docker hub
 2. He goes to the ConnectAPI marketplace and register (email and password for now)
 3. He clicks on the "Create Service" button
