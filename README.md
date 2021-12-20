@@ -8,7 +8,7 @@ Build your backend with components
 | **Gateway**      | The only entry point to the system, responsible for auth, validation and rate limit's. | https://github.com/ConnectAPI/Gateway       |
 | **Dashboard**    | Provide easy interface for managing and monitoring the system.                         | https://github.com/ConnectAPI/Dashboard     |
 | **SDK Generator**| Generate SDK from OpenAPI spec.                                                        | https://github.com/ConnectAPI/SDKGeneragtor |
-s
+
 ### What we want?
 Our goal is to create a system that allows you to set up your backend with a few clicks.
 
@@ -23,23 +23,23 @@ Once the Docker installation completes an HTTP url for the dashboard will be sho
 
 
 ### How it works (from the side of a service writer)?
-1. write a service that can detect animals in photos.
+1. write a HTTP service.
 2. write an OpenAPI spec for the service and build a docker image.
-3. upload the docker image and the spec to the marketplace.
-You now have a service on the ConnectAPI marketplace that anyone can use in their system.
+3. upload the docker image and the spec to the marketplace. 
+You now have a service on the ConnectAPI marketplace that anyone can use in their system. 😎
 
 ### How it works (from the side of an app developer)?
 1. Run our docker image on your machine.
-2. Open the dashboard (click on the link).
-3. Search for needed services
-4. Click install
-5. That it! Now the service is running on your system.
-6. To access the service you need to access the gateway with a specific URL prefix (HTTP://<gateway_url>/<service_name>)
-OR use the dedicated auto-generated library.
-
+2. Open the dashboard (click on the link 🖱).
+3. Search for needed services 🔎.
+4. Click install 📲.
+5. That it! Now the service is running on your system 🙌.
+6. To access the service just access the gateway with a specific URL prefix (HTTP://<gateway_url>/<service_name>)  
+OR use the dedicated auto-generated library. (**recommanded**)
+   
 
 ### User story
-1. Backend developer creates some API and OpenAPI spec for the API and uploads docker image of the API to docker hub
+1. Backend developer creates API, OpenAPI spec for that API, and uploads the API docker image to docker hub
 2. He goes to the ConnectAPI marketplace and register (email and password for now)
 3. He clicks on the "Create Service" button
 4. He choose the service name (if not taken)
