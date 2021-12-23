@@ -4,6 +4,7 @@ import secrets
 import docker
 
 DOCKER_NETWORK_NAME = "connectapi"
+DEBUG = True
 
 
 def create_secret(n: int) -> str:
@@ -25,8 +26,10 @@ def deploy_containers():
     client = docker.from_env()
 
     networks = client.networks.list(names=[DOCKER_NETWORK_NAME])
-    assert not networks, f"Network '{DOCKER_NETWORK_NAME}' all ready exist."
-    client.networks.create(DOCKER_NETWORK_NAME, "bridge")
+    if not networks:
+        client.networks.create(DOCKER_NETWORK_NAME, "bridge")
+    else:
+        print("WARNING: network all ready existing.")
 
     # Run gateway
     client.containers.run(
@@ -44,6 +47,7 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
+        auto_remove=DEBUG,
         network=DOCKER_NETWORK_NAME,
     )
 
@@ -62,6 +66,7 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
+        auto_remove=DEBUG,
         network=DOCKER_NETWORK_NAME,
     )
 
