@@ -3,7 +3,7 @@ import secrets
 
 import docker
 
-DOCKER_NETWORK_NAME = "core"
+DOCKER_NETWORK_NAME = "connectapi"
 
 
 def create_secret(n: int) -> str:
@@ -42,7 +42,7 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        network="core",
+        network=DOCKER_NETWORK_NAME,
     )
 
     # Run dashboard
@@ -60,7 +60,7 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        network="core",
+        network=DOCKER_NETWORK_NAME,
     )
 
 
