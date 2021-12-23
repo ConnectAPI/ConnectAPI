@@ -1,8 +1,8 @@
 FROM python:3.10-slim-buster
 
-RUN pip install -r --no-cache-dir requirements.txt
-
 COPY . .
+
+RUN pip install -r --no-cache-dir requirements.txt
 
 WORKDIR ./src
 
