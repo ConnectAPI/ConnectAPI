@@ -24,6 +24,8 @@ print("SECRET_KEY",         DASHBOARD_DB_PASSWORD)
 def deploy_containers():
     client = docker.from_env()
 
+    networks = client.networks.list(names=[DOCKER_NETWORK_NAME])
+    assert not networks, f"Network '{DOCKER_NETWORK_NAME}' all ready exist."
     client.networks.create(DOCKER_NETWORK_NAME, "bridge")
 
     # Run gateway
