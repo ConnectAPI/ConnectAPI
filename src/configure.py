@@ -47,7 +47,7 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove=DEBUG,
+        auto_remove= not DEBUG,
         network=DOCKER_NETWORK_NAME,
     )
 
@@ -66,7 +66,7 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove=DEBUG,
+        auto_remove=not DEBUG,
         network=DOCKER_NETWORK_NAME,
     )
 
