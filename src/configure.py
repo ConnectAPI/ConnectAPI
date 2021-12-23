@@ -2,24 +2,30 @@ import os
 import secrets
 
 import docker
-
-DOCKER_NETWORK_NAME = "connectapi"
-DEBUG = True
+import pymongo
 
 
 def create_secret(n: int) -> str:
     return secrets.token_urlsafe(n)
 
+
 MARKETPLACE_URL = os.environ.get("MARKETPLACE_URL")
 SECRET_KEY = create_secret(20)
 SUPER_USER_SECRET = create_secret(20)
-GATEWAY_DB_PASSWORD = create_secret(20)
-DASHBOARD_DB_PASSWORD = create_secret(20)
+GATEWAY_DB_PASSWORD = "gatewaypass" #create_secret(20)
+DASHBOARD_DB_PASSWORD = "dashpassword" #create_secret(20)
+DOCKER_NETWORK_NAME = "connectapi"
+DEBUG = True
+
 
 print("SECRET_KEY",         SECRET_KEY)
 print("SUPER_USER_SECRET",  SUPER_USER_SECRET)
 print("GATEWAY_DB_PASSWORD",         GATEWAY_DB_PASSWORD)
 print("SECRET_KEY",         DASHBOARD_DB_PASSWORD)
+
+
+def setup_mongo():
+    pymongo.MongoClient()
 
 
 def deploy_containers():
