@@ -4,6 +4,8 @@ import secrets
 import docker
 import pymongo
 
+from test import main as run_test
+
 
 def create_secret(n: int) -> str:
     return secrets.token_urlsafe(n)
@@ -22,10 +24,6 @@ print("SECRET_KEY",         SECRET_KEY)
 print("SUPER_USER_SECRET",  SUPER_USER_SECRET)
 print("GATEWAY_DB_PASSWORD",         GATEWAY_DB_PASSWORD)
 print("SECRET_KEY",         DASHBOARD_DB_PASSWORD)
-
-
-def setup_mongo():
-    pymongo.MongoClient()
 
 
 def deploy_containers():
@@ -79,6 +77,7 @@ def deploy_containers():
 
 def main():
     deploy_containers()
+    run_test()
 
 
 if __name__ == "__main__":
