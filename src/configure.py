@@ -48,6 +48,7 @@ def deploy_containers():
             "REDIS_PORT": 6379,
             "REDIS_HOST": "redis",
             "ENV": "PRODUCTION",
+            "DOCKER_NETWORK_NAME": DOCKER_NETWORK_NAME,
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
