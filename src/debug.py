@@ -11,5 +11,5 @@ def test_gateway_services():
     print('\n'.join(map(str, col.find({}, {"name": 1}))))
 
 
-def main():
+def run():
     test_gateway_services()

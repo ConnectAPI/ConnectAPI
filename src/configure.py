@@ -4,7 +4,7 @@ import secrets
 import docker
 import pymongo
 
-from test import main as run_test
+from debug import run as run_debug
 
 
 def create_secret(n: int) -> str:
@@ -36,7 +36,7 @@ def deploy_containers():
         print("WARNING: network all ready existing.")
 
     # Run gateway
-    client.containers.run(
+    gateway_container = client.containers.run(
         "connectapi_gateway:latest",
         name="connectapi_gateway",
         hostname="gateway",
@@ -52,12 +52,12 @@ def deploy_containers():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove= not DEBUG,
+        auto_remove=not DEBUG,
         network=DOCKER_NETWORK_NAME,
     )
 
     # Run dashboard
-    client.containers.run(
+    dashboard_container = client.containers.run(
         "connectapi_dashboard:latest",
         name="connectapi_dashboard",
         hostname="dashboard",
@@ -78,7 +78,8 @@ def deploy_containers():
 
 def main():
     deploy_containers()
-    run_test()
+    if DEBUG:
+        run_debug()
 
 
 if __name__ == "__main__":
