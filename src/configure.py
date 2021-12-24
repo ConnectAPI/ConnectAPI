@@ -23,7 +23,7 @@ DEBUG = True
 print("SECRET_KEY",         SECRET_KEY)
 print("SUPER_USER_SECRET",  SUPER_USER_SECRET)
 print("GATEWAY_DB_PASSWORD",         GATEWAY_DB_PASSWORD)
-print("SECRET_KEY",         DASHBOARD_DB_PASSWORD)
+print("DASHBOARD_DB_PASSWORD",         DASHBOARD_DB_PASSWORD)
 
 
 def deploy_containers():
