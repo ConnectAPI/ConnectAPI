@@ -1,10 +1,11 @@
+import sys
 import os
 import secrets
 
 import docker
-import pymongo
 
 from debug import run as run_debug
+from file import load_container_ids, save_container_ids
 
 
 def create_secret(n: int) -> str:
@@ -17,7 +18,7 @@ SUPER_USER_SECRET = create_secret(20)
 GATEWAY_DB_PASSWORD = "gatewaypass" #create_secret(20)
 DASHBOARD_DB_PASSWORD = "dashpassword" #create_secret(20)
 DOCKER_NETWORK_NAME = "connectapi"
-DEBUG = True
+DEBUG = os.getenv("DEBUG", False) in (True, 1, "yes", "Yes", "y", "ok")
 
 
 print("SECRET_KEY",         SECRET_KEY)
@@ -26,7 +27,12 @@ print("GATEWAY_DB_PASSWORD",         GATEWAY_DB_PASSWORD)
 print("DASHBOARD_DB_PASSWORD",         DASHBOARD_DB_PASSWORD)
 
 
-def deploy_containers():
+def setup_db():
+    print("TODO: setup db")
+    # TODO: setup db
+
+
+def install_and_start_system():
     client = docker.from_env()
 
     networks = client.networks.list(names=[DOCKER_NETWORK_NAME])
@@ -74,10 +80,34 @@ def deploy_containers():
         auto_remove=not DEBUG,
         network=DOCKER_NETWORK_NAME,
     )
+    print(gateway_container.id, dashboard_container.id)
+    save_container_ids([gateway_container.id, dashboard_container.id])
+
+
+def stop_and_uninstall_system():
+    ids = load_container_ids()
+    client = docker.from_env()
+
+    for id in ids:
+        container = client.containers.get(id)
+        container.stop()
+
+
+def run_command(command):
+    if command == "install":
+        install_and_start_system()
+    elif command == "uninstall":
+        stop_and_uninstall_system()
+    else:
+        print("ERROR: command not exist.")
 
 
 def main():
-    deploy_containers()
+    command = "install"
+    if len(sys.argv) > 1:
+        command = sys.argv[1]
+    run_command(command)
+
     if DEBUG:
         run_debug()
 
