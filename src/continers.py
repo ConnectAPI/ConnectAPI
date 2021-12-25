@@ -73,7 +73,6 @@ def start_containers(debug):
         auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
     )
-    print(gateway_container.id, dashboard_container.id)
     save_container_ids([gateway_container.id, dashboard_container.id])
 
 

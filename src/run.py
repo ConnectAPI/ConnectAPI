@@ -36,10 +36,13 @@ def main():
     command = "install"
     if len(sys.argv) > 1:
         command = sys.argv[1]
+    logger.level("INFO")
+
     logger.info(f"Starting command <{command}>")
     if DEBUG:
         logger.info("Starting debug mode")
         logger.level("DEBUG")
+
     run_command(command)
 
 
