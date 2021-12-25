@@ -3,6 +3,7 @@ import sys
 
 from loguru import logger
 
+from logger import setup_logger
 from continers import start_containers, stop_containers
 
 
@@ -36,12 +37,8 @@ def main():
     command = "install"
     if len(sys.argv) > 1:
         command = sys.argv[1]
-    logger.level("INFO")
-
-    logger.info(f"Starting command <{command}>")
-    if DEBUG:
-        logger.info("Starting debug mode")
-        logger.level("DEBUG")
+    logger.info(f"Starting command '{command}'")
+    setup_logger(DEBUG)
 
     run_command(command)
 
