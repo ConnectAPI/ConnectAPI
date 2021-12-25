@@ -12,4 +12,4 @@ VOLUME /var/run/docker.sock
 VOLUME /usr/data
 
 
-ENTRYPOINT ["python", "configure.py"]
+ENTRYPOINT ["python", "run.py"]
