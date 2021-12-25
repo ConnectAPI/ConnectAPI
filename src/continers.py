@@ -1,11 +1,10 @@
-import sys
-import os
 import secrets
+import os
 
 import docker
+from loguru import logger
 
-from debug import run as run_debug
-from file import load_container_ids, save_container_ids
+from file import save_container_ids, load_container_ids
 
 
 def create_secret(n: int) -> str:
@@ -18,21 +17,15 @@ SUPER_USER_SECRET = create_secret(20)
 GATEWAY_DB_PASSWORD = "gatewaypass" #create_secret(20)
 DASHBOARD_DB_PASSWORD = "dashpassword" #create_secret(20)
 DOCKER_NETWORK_NAME = "connectapi"
-DEBUG = os.getenv("DEBUG", False) in (True, 1, "yes", "Yes", "y", "ok")
 
 
-print("SECRET_KEY",         SECRET_KEY)
-print("SUPER_USER_SECRET",  SUPER_USER_SECRET)
-print("GATEWAY_DB_PASSWORD",         GATEWAY_DB_PASSWORD)
-print("DASHBOARD_DB_PASSWORD",         DASHBOARD_DB_PASSWORD)
+logger.debug(f"SECRET_KEY: {SECRET_KEY}", )
+logger.debug(f"SUPER_USER_SECRET {SUPER_USER_SECRET}")
+logger.debug(f"GATEWAY_DB_PASSWORD {GATEWAY_DB_PASSWORD}")
+logger.debug(f"DASHBOARD_DB_PASSWORD {DASHBOARD_DB_PASSWORD}")
 
 
-def setup_db():
-    print("TODO: setup db")
-    # TODO: setup db
-
-
-def install_and_start_system():
+def start_containers(debug):
     client = docker.from_env()
 
     networks = client.networks.list(names=[DOCKER_NETWORK_NAME])
@@ -77,40 +70,20 @@ def install_and_start_system():
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove=not DEBUG,
+        auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
     )
     print(gateway_container.id, dashboard_container.id)
     save_container_ids([gateway_container.id, dashboard_container.id])
 
 
-def stop_and_uninstall_system():
+def stop_containers(debug):
+    logger.info("Stopping containers...")
     ids = load_container_ids()
     client = docker.from_env()
 
     for id in ids:
         container = client.containers.get(id)
+        logger.info(f"Stopping container {container.short_id}")
         container.stop()
-
-
-def run_command(command):
-    if command == "install":
-        install_and_start_system()
-    elif command == "uninstall":
-        stop_and_uninstall_system()
-    else:
-        print("ERROR: command not exist.")
-
-
-def main():
-    command = "install"
-    if len(sys.argv) > 1:
-        command = sys.argv[1]
-    run_command(command)
-
-    if DEBUG:
-        run_debug()
-
-
-if __name__ == "__main__":
-    main()
+        logger.info("Stopped")
