@@ -8,7 +8,7 @@ from continers import start_containers, stop_containers
 from config import generate_conf
 
 
-DEBUG = os.getenv("DEBUG", False) in (True, 1, "yes", "Yes", "y", "ok")
+DEBUG = os.getenv("DEBUG", False) in (True, 1, "yes", "Yes", "y", "Y", "ok")
 
 
 def setup_db():
