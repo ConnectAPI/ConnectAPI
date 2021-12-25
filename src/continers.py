@@ -11,28 +11,18 @@ def create_secret(n: int) -> str:
     return secrets.token_urlsafe(n)
 
 
-MARKETPLACE_URL = os.environ.get("MARKETPLACE_URL")
-SECRET_KEY = create_secret(20)
-SUPER_USER_SECRET = create_secret(20)
-GATEWAY_DB_PASSWORD = "gatewaypass" #create_secret(20)
-DASHBOARD_DB_PASSWORD = "dashpassword" #create_secret(20)
+MARKETPLACE_URL = os.getenv("MARKETPLACE_URL")
 DOCKER_NETWORK_NAME = "connectapi"
 
 
-logger.debug(f"SECRET_KEY: {SECRET_KEY}", )
-logger.debug(f"SUPER_USER_SECRET {SUPER_USER_SECRET}")
-logger.debug(f"GATEWAY_DB_PASSWORD {GATEWAY_DB_PASSWORD}")
-logger.debug(f"DASHBOARD_DB_PASSWORD {DASHBOARD_DB_PASSWORD}")
-
-
-def start_containers(debug):
+def start_containers(debug, conf):
     client = docker.from_env()
 
     networks = client.networks.list(names=[DOCKER_NETWORK_NAME])
     if not networks:
         client.networks.create(DOCKER_NETWORK_NAME, "bridge")
     else:
-        print("WARNING: network all ready existing.")
+        logger.warning("network all ready existing.")
 
     # Run gateway
     gateway_container = client.containers.run(
@@ -41,9 +31,9 @@ def start_containers(debug):
         hostname="gateway",
         ports={80: 1687},
         environment={
-            "SECRET_KEY": SECRET_KEY,
-            "SUPER_USER_SECRET": SUPER_USER_SECRET,
-            "MONGO_URL": f"mongodb://gatewayname:{GATEWAY_DB_PASSWORD}@5.183.9.78:27017/gateway",
+            "SECRET_KEY": conf.secret_key,
+            "SUPER_USER_SECRET": conf.super_user_secret,
+            "MONGO_URL": f"mongodb://gatewayname:{conf.gateway_db_password}@5.183.9.78:27017/gateway",
             "REDIS_PORT": 6379,
             "REDIS_HOST": "redis",
             "ENV": "PRODUCTION",
@@ -62,8 +52,8 @@ def start_containers(debug):
         hostname="dashboard",
         ports={80: 9934},
         environment={
-            "SECRET_KEY": SECRET_KEY,
-            "mongo_url": f"mongodb://dashusername:{DASHBOARD_DB_PASSWORD}@5.183.9.78:27017/Dashboard",
+            "SECRET_KEY": conf.secret_key,
+            "mongo_url": f"mongodb://dashusername:{conf.dashboard_db_password}@5.183.9.78:27017/Dashboard",
             "marketplace_url": MARKETPLACE_URL,
             "gateway_url": "http://gateway",
             "port": 80,
@@ -81,8 +71,10 @@ def stop_containers(debug):
     ids = load_container_ids()
     client = docker.from_env()
 
-    for id in ids:
-        container = client.containers.get(id)
+    for _id in ids:
+        container = client.containers.get(_id)
         logger.info(f"Stopping container {container.short_id}")
         container.stop()
         logger.info("Stopped")
+
+    # TODO: delete docker network

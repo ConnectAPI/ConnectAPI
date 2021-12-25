@@ -5,6 +5,7 @@ from loguru import logger
 
 from logger import setup_logger
 from continers import start_containers, stop_containers
+from config import generate_conf
 
 
 DEBUG = os.getenv("DEBUG", False) in (True, 1, "yes", "Yes", "y", "ok")
@@ -16,8 +17,11 @@ def setup_db():
 
 
 def install_and_start_system():
+    conf = generate_conf()
+    logger.debug(conf.__dict__)
+
     setup_db()
-    start_containers(debug=DEBUG)
+    start_containers(debug=DEBUG, conf=conf)
 
 
 def stop_and_uninstall_system():
@@ -34,12 +38,13 @@ def run_command(command):
 
 
 def main():
+    setup_logger(DEBUG)
+
     command = "install"
     if len(sys.argv) > 1:
         command = sys.argv[1]
-    logger.info(f"Starting command '{command}'")
-    setup_logger(DEBUG)
 
+    logger.info(f"Starting command '{command}'")
     run_command(command)
 
 
