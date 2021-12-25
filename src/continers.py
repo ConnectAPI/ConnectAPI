@@ -51,7 +51,7 @@ def start_containers(debug):
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove=not DEBUG,
+        auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
     )
 
