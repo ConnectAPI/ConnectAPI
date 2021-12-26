@@ -13,8 +13,8 @@ def create_secret(n: int) -> str:
 
 MARKETPLACE_URL = os.getenv("MARKETPLACE_URL")
 logger.debug(f"marketplace url: {MARKETPLACE_URL}")
-logger.debug(f"marketplace url: {os.getenv('marketplace_url')}")
 DOCKER_NETWORK_NAME = "connectapi"
+logger.debug(f"docker network name: {DOCKER_NETWORK_NAME}")
 
 
 def start_containers(debug, conf):
@@ -55,10 +55,10 @@ def start_containers(debug, conf):
         ports={80: 9934},
         environment={
             "SECRET_KEY": conf.secret_key,
-            "mongo_url": f"mongodb://dashusername:{conf.dashboard_db_password}@5.183.9.78:27017/Dashboard",
-            "marketplace_url": MARKETPLACE_URL,
-            "gateway_url": "http://gateway",
-            "port": 80,
+            "MONGO_URL": f"mongodb://dashusername:{conf.dashboard_db_password}@5.183.9.78:27017/Dashboard",
+            "MARKETPLACE_URL": MARKETPLACE_URL,
+            "GATEWAY_URL": "http://gateway",
+            "PORT": 80,
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
