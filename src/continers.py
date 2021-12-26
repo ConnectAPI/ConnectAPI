@@ -56,6 +56,7 @@ def start_containers(debug, conf):
         ports={80: 9934},
         environment={
             "SECRET_KEY": conf.secret_key,
+            "SUPER_USER_SECRET": conf.super_user_secret,
             "MONGO_URL": f"mongodb://dashusername:{conf.dashboard_db_password}@5.183.9.78:27017/Dashboard",
             "MARKETPLACE_URL": MARKETPLACE_URL,
             "GATEWAY_URL": "http://gateway",
