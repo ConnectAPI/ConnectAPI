@@ -78,11 +78,12 @@ def stop_containers(debug):
     client = docker.from_env()
 
     for _id in ids:
+        logger.info(f"Stopping container {_id}")
         try:
             container = client.containers.get(_id)
         except docker.context.api.errors.NotFound:
+            logger.warning(f"container {_id} not found")
             continue
-        logger.info(f"Stopping container {container.short_id}")
         container.stop()
         logger.info("Stopped")
 
