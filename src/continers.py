@@ -12,6 +12,8 @@ def create_secret(n: int) -> str:
 
 
 MARKETPLACE_URL = os.getenv("MARKETPLACE_URL")
+logger.debug(f"marketplace url: {MARKETPLACE_URL}")
+logger.debug(f"marketplace url: {os.getenv('marketplace_url')}")
 DOCKER_NETWORK_NAME = "connectapi"
 
 
