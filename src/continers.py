@@ -12,12 +12,13 @@ def create_secret(n: int) -> str:
 
 
 MARKETPLACE_URL = os.getenv("MARKETPLACE_URL")
-logger.debug(f"marketplace url: {MARKETPLACE_URL}")
 DOCKER_NETWORK_NAME = "connectapi"
-logger.debug(f"docker network name: {DOCKER_NETWORK_NAME}")
 
 
 def start_containers(debug, conf):
+    logger.debug(f"marketplace url: {MARKETPLACE_URL}")
+    logger.debug(f"docker network name: {DOCKER_NETWORK_NAME}")
+
     client = docker.from_env()
 
     networks = client.networks.list(names=[DOCKER_NETWORK_NAME])
@@ -69,6 +70,8 @@ def start_containers(debug, conf):
 
 
 def stop_containers(debug):
+    logger.debug(f"docker network name: {DOCKER_NETWORK_NAME}")
+
     logger.info("Stopping containers...")
     ids = load_container_ids()
     client = docker.from_env()
