@@ -35,7 +35,7 @@ You now have a service on the ConnectAPI marketplace that anyone can use in thei
 4. Click install 📲.
 5. That it! Now the service is running on your system 🙌.
 6. To access the service just access the gateway with a specific URL prefix (HTTP://<gateway_url>/<service_name>)  
-OR use the dedicated auto-generated library. (**recommanded**)
+OR use the dedicated auto-generated library. (**recommended**)
    
 
 ### User story
