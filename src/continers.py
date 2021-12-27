@@ -74,7 +74,6 @@ def stop_containers(debug):
     client = docker.from_env()
 
     containers = client.containers.list()
-    logger.debug(containers)
     my_containers = filter(lambda c: c.name.startswith("connectapi"), containers)
 
     for container in my_containers:
