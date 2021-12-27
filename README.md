@@ -2,22 +2,22 @@
 Build your backend with components
 
 ### Full system overview
-| Service      | Description  | repo       |
-|--------------|:-------------|------------|
-| **Marketplace**  | Provide API and website to upload, download and search services.                       | https://github.com/ConnectAPI/MarketPlace   |
-| **Gateway**      | The only entry point to the system, responsible for auth, validation and rate limit's. | https://github.com/ConnectAPI/Gateway       |
-| **Dashboard**    | Provide easy interface for managing and monitoring the system.                         | https://github.com/ConnectAPI/Dashboard     |
-| **SDK Generator**| Generate SDK from OpenAPI spec.                                                        | https://github.com/ConnectAPI/SDKGeneragtor |
+| Service           | Description                                                                            | repo                                        |
+|-------------------|:---------------------------------------------------------------------------------------|---------------------------------------------|
+| **Marketplace**   | Provide API and website to upload, download and search services.                       | https://github.com/ConnectAPI/MarketPlace   |
+| **Gateway**       | The only entry point to the system, responsible for auth, validation and rate limit's. | https://github.com/ConnectAPI/Gateway       |
+| **Dashboard**     | Provide easy interface for managing and monitoring the system.                         | https://github.com/ConnectAPI/Dashboard     |
+| **SDK Generator** | Generate SDK from OpenAPI spec.                                                        | https://github.com/ConnectAPI/SDKGeneragtor |
 
 ### What we want?
 Our goal is to create a system that allows you to set up your backend with a few clicks.
 
 ### installation
-```
-$> docker run -it --rm \
+```commandline
+$> docker run \
     --volume /var/run/docker.sock:/var/run/docker.sock \
-    --entrypoint="install" \
-    apiconnect/apiconnect:latest
+    -e MARKETPLACE_URL="https://market.boxs.ml"
+    apiconnectsys/connectapi:latest install
 ```
 Once the Docker installation completes an HTTP url for the dashboard will be showen on the console, enter it to manage your system.
 
@@ -53,3 +53,11 @@ OR use the dedicated auto-generated library. (**recommanded**)
 12. He browse the marketplace or use the search and choose a service to install
 13. The service is added to the system services and starts running
 14. He visit the system tab at the dashboard and get full monitoring info about his installed services
+
+
+### uninstall
+```commandline
+$> docker run \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    apiconnectsys/connectapi:latest uninstall
+```
