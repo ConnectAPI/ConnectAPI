@@ -37,6 +37,6 @@ You now have a service on the ConnectAPI marketplace that anyone can use in thei
 Our system is built from three main parts:
 
 1. The gateway is per client (you) and manages the incoming requests to the system.
-2. The dashboard is also per client and is allow you to command and control you'r system.
+2. The dashboard is also per client and allow you to command and control you'r system.
 3. The marketplace is global and manages the services, every service you install on your system come from the marketplace.
 s
