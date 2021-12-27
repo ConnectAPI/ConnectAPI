@@ -4,8 +4,6 @@ import os
 import docker
 from loguru import logger
 
-from file import save_container_ids, load_container_ids
-
 
 def create_secret(n: int) -> str:
     return secrets.token_urlsafe(n)
@@ -67,23 +65,20 @@ def start_containers(debug, conf):
         auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
     )
-    save_container_ids([gateway_container.id, dashboard_container.id])
 
 
 def stop_containers(debug):
     logger.debug(f"docker network name: {DOCKER_NETWORK_NAME}")
 
     logger.info("Stopping containers...")
-    ids = load_container_ids()
     client = docker.from_env()
 
-    for _id in ids:
-        logger.info(f"Stopping container {_id}")
-        try:
-            container = client.containers.get(_id)
-        except docker.context.api.errors.NotFound:
-            logger.warning(f"container {_id} not found")
-            continue
+    containers = client.containers.list()
+    logger.debug(containers)
+    my_containers = map(lambda c: c.name.startswith("connectapi"), containers)
+
+    for container in my_containers:
+        logger.info(f"Stopping container {container.name} {container.short_id}")
         container.stop()
         logger.info("Stopped")
 
