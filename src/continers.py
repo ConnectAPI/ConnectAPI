@@ -75,7 +75,7 @@ def stop_containers(debug):
 
     containers = client.containers.list()
     logger.debug(containers)
-    my_containers = map(lambda c: c.name.startswith("connectapi"), containers)
+    my_containers = filter(lambda c: c.name.startswith("connectapi"), containers)
 
     for container in my_containers:
         logger.info(f"Stopping container {container.name} {container.short_id}")
