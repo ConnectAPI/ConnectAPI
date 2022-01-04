@@ -26,6 +26,7 @@ def start_containers(debug, conf):
         logger.warning("network all ready existing.")
 
     # Run gateway
+    logger.info("Starting gateway")
     gateway_container = client.containers.run(
         "connectapi_gateway:latest",
         name="connectapi_gateway",
@@ -45,8 +46,10 @@ def start_containers(debug, conf):
         auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
     )
+    logger.info(f"Started {gateway_container.short_id}")
 
     # Run dashboard
+    logger.info("Starting dashboard...")
     dashboard_container = client.containers.run(
         "connectapi_dashboard:latest",
         name="connectapi_dashboard",
@@ -65,6 +68,7 @@ def start_containers(debug, conf):
         auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
     )
+    logger.info(f"Started {dashboard_container.short_id}")
 
 
 def stop_containers(debug):
