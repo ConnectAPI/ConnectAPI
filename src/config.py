@@ -7,6 +7,7 @@ from dataclasses import dataclass, MISSING
 class UserConfig:
     http_port: int = 80
     https_port: int = 443
+    dashboard_port: int = 6489
     domain: str = "localhost"
 
 

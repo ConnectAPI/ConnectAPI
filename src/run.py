@@ -22,7 +22,7 @@ def install_and_start_system():
 
     setup_db()
     start_containers(debug=DEBUG, conf=conf)
-    logger.info(f"Running dashboard on http://{conf.user_config.domain}")
+    logger.info(f"Running dashboard on http://{conf.user_config.domain}:{conf.user_config.dashboard_port}")
 
 
 def stop_and_uninstall_system():
