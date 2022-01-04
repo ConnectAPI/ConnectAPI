@@ -22,6 +22,7 @@ class SecretConfiguration:
 def generate_conf() -> SecretConfiguration:
     sleep(1)  # prevent output collision
     args = {}
+    print("")
     for name, field in UserConfig.__dataclass_fields__.items():
         if field.default != MISSING:
             default = field.default
@@ -33,6 +34,7 @@ def generate_conf() -> SecretConfiguration:
             while not value:
                 value = input(f"Enter {name}[required!]: ")
         args[name] = value
+        print("")
     user_config = UserConfig(**args)
     return SecretConfiguration(
         secret_key=secrets.token_urlsafe(20),
