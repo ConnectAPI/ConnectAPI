@@ -16,9 +16,9 @@ Our goal is to create a system that allows you to set up your backend with a few
 ### Quick start, how to run the system
 1. run this command to install and run the system
     ```commandline
-    $> docker run \
+    docker run \
         --volume /var/run/docker.sock:/var/run/docker.sock \
-        -e MARKETPLACE_URL="https://market.boxs.ml"
+        -e MARKETPLACE_URL="https://market.boxs.ml" \
         apiconnectsys/connectapi:latest install
     ```
     Once the Docker installation completes an HTTP url for the dashboard will be showen on the console, enter it to manage your system.
