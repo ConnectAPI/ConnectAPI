@@ -26,7 +26,7 @@ Our goal is to create a system that allows you to set up your backend with a few
 3. go to your code and install the service sdk (provided from the dashboard)
 
 
-### Quick start on how to add a service
+### Quick start on how to add a service to the marketplace
 1. write an HTTP service.
 2. write an OpenAPI spec for the service and build a docker image.
 3. go to the [marketplace](https://market.boxs.ml) and upload you'r service.
