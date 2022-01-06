@@ -2,4 +2,4 @@
 
 set -e
 
-mkdocs serve --config-file mkdocs.insiders.yml
+mkdocs serve --config-file mkdocs.insiders.yml -a localhost:24687

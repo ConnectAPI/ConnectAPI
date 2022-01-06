@@ -18,13 +18,13 @@ Knowing if it's useful or if you find any obvious problem with its design would 
 
 ## Star **ConnectAPI** in GitHub
 
-You can "star" ConnectAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/tiangolo/ConnectAPI" class="external-link" target="_blank">https://github.com/tiangolo/ConnectAPI</a>. ⭐️
+You can "star" ConnectAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/connectapi/ConnectAPI" class="external-link" target="_blank">https://github.com/connectapi/ConnectAPI</a>. ⭐️
 
 By adding a star, other users will be able to find it more easily and see that it has been already useful for others.
 
 ## Watch the GitHub repository for releases
 
-You can "watch" ConnectAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/connectapi/ConnectAPI" class="external-link" target="_blank">https://github.com/tiangolo/ConnectAPI</a>. 👀
+You can "watch" ConnectAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/connectapi/ConnectAPI" class="external-link" target="_blank">https://github.com/connectapi/ConnectAPI</a>. 👀
 
 There you can select "Releases only".
 
