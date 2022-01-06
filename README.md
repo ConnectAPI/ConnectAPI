@@ -48,27 +48,7 @@ As **ConnectAPI** is running on [Docker](https://www.docker.com/) it will requir
 <div class="termy">
 
 ```console
-$ docker run -it --rm\
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        -e MARKETPLACE_URL='https://market.boxs.ml' \
-        connectapi install
-2022-01-05 23:05:44.300 | INFO     | __main__:main:48 - Starting command 'install'
-
-Enter http_port[80]:
-
-Enter https_port[443]:
-
-Enter dashboard_port[6489]:
-
-Enter domain[localhost]: 
-
-2022-01-05 23:06:02.559 | INFO     | __main__:setup_db:15 - setting up db...
-2022-01-05 23:06:02.583 | WARNING  | continers:start_containers:26 - network all ready existing.
-2022-01-05 23:06:02.585 | INFO     | continers:start_containers:29 - Starting gateway
-2022-01-05 23:06:03.263 | INFO     | continers:start_containers:49 - Started 6d4dc62757
-2022-01-05 23:06:03.265 | INFO     | continers:start_containers:52 - Starting dashboard...
-2022-01-05 23:06:04.422 | INFO     | continers:start_containers:71 - Started abadcbe10c
-2022-01-05 23:06:04.423 | INFO     | __main__:install_and_start_system:25 - Running dashboard on http://localhost:6489
+$ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -e MARKETPLACE_URL='https://market.boxs.ml' connectapi install
 ```
 
 </div>
