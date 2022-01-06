@@ -35,7 +35,7 @@ mdx-include = "^1.4.1"
 autoflake = "^1.4"
 docker = "^5.0.3"
 pymongo = "^4.0.1"
-loguru = "0.5.3"
+loguru = "^0.5.3"
 
 [build-system]
 requires = ["poetry-core"]
