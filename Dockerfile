@@ -3,11 +3,11 @@ FROM python:3.10-slim-buster
 COPY ./poetry.toml ./poetry.toml
 COPY ./pyproject.toml ./pyproject.toml
 RUN pip install poetry
-RUN poetry install
+RUN poetry install --no-dev
 
 COPY . .
 
-WORKDIR ./src
+WORKDIR ./cli
 
 VOLUME /var/run/docker.sock
 
