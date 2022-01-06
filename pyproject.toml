@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "connectapi"
+version = "0"
+description = "A way to build your backend with components."
+authors = ["Yehoyada shtinmetz <yehoyada.sht@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/connectapi/connectapi"
+documentation = "https://connectapi.io"
+repository = "https://github.com/connectapi/connectapi"
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Internet",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.9.2"
+black = {version = "^21.5-beta.1", python = "^3.7"}
+mkdocs = "^1.2.1"
+mkdocs-material = "^7.1.9"
+mdx-include = "^1.4.1"
+autoflake = "^1.4"
+docker = "^5.0.3"
+pymongo = "^4.0.1"
+loguru = "^0.5.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry-version-plugin]
+source = "init"
