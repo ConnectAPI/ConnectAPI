@@ -34,7 +34,7 @@ This system is work in progress, it is not advisable to use it in production yet
 
 Yes 🎉 (but continue reading).
 
-You can use this and evaluate the **idea and easy of use** I'm proposing. It will probably be useful to know if it works and is useful for you (I hope so).
+You can use this and evaluate the **idea and ease of use** I'm proposing. It will probably be useful to know if it works and is useful for you (I hope so).
 
 But still, consider this lab material, expect it to change a bit. 🧪
 
