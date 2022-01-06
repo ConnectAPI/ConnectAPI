@@ -25,6 +25,9 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
+docker = "^5.0.3"
+pymongo = "^4.0.1"
+loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
@@ -33,9 +36,6 @@ mkdocs = "^1.2.1"
 mkdocs-material = "^7.1.9"
 mdx-include = "^1.4.1"
 autoflake = "^1.4"
-docker = "^5.0.3"
-pymongo = "^4.0.1"
-loguru = "^0.5.3"
 
 [build-system]
 requires = ["poetry-core"]
