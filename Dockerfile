@@ -7,7 +7,7 @@ RUN poetry install --no-dev
 
 COPY . .
 
-WORKDIR ./src
+WORKDIR ./cli
 
 VOLUME /var/run/docker.sock
 
