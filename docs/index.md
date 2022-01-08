@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://connectapi.io"><img src="/img/logo-margin/logo-margin.png" alt="ConnectAPI"></a>
+  <a href="https://connectapi.io"><img src="../img/logo-margin/logo-margin.png" alt="ConnectAPI"></a>
 </p>
 <p align="center">
     <em>A way to build your backend with components.</em>
