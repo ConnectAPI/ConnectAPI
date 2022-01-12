@@ -1,3 +1,4 @@
+from logging import log
 import secrets
 import os
 import time
@@ -17,6 +18,7 @@ def create_secret(n: int) -> str:
 
 MARKETPLACE_URL = os.getenv("MARKETPLACE_URL")
 DOCKER_NETWORK_NAME = "connectapi"
+DOCKER_ACCOUNT = "connectapihub"
 
 MONGODB_HOSTNAME = "mongo"
 MONGO_FILES_DIR = str(get_root() / "mongo")
@@ -54,8 +56,7 @@ def setup_mongodb(debug, conf):
     logger.info("Starting MongoDB")
     if not os.path.isdir(MONGO_FILES_DIR):
         os.mkdir(MONGO_FILES_DIR)
-
-    logger.info(MONGO_FILES_DIR)
+        logger.debug(f"Created {MONGO_FILES_DIR} dir")
 
     mongo_container = client.containers.run(
         "mongo:latest",
@@ -71,8 +72,8 @@ def setup_mongodb(debug, conf):
         detach=True,
         auto_remove=not debug,
     )
-    time.sleep(5)  # Wait for mongo to start
 
+    logger.info("Setting up db and services auth")
     client = MongoClient(f"mongodb://root:{conf.root_db_password}@127.0.0.1:27017")
     
     client.gateway.command(
@@ -93,9 +94,11 @@ def start_containers(debug, conf):
     client = docker.from_env()
 
     # Run gateway
+    logger.info("Pulling gateway image")
+    client.images.pull(f"{DOCKER_ACCOUNT}/gateway")
     logger.info("Starting gateway")
     gateway_container = client.containers.run(
-        "connectapi_gateway:latest",
+        f"{DOCKER_ACCOUNT}/gateway:latest",
         name="connectapi_gateway",
         hostname=GATEWAY_HOSTNAME,
         ports={80: 1687},
@@ -116,9 +119,11 @@ def start_containers(debug, conf):
     logger.info(f"Started {gateway_container.short_id}")
 
     # Run dashboard
+    logger.info("Pulling dashboard image")
+    client.images.pull(f"{DOCKER_ACCOUNT}/dashboard")
     logger.info("Starting dashboard...")
     dashboard_container = client.containers.run(
-        "connectapi_dashboard:latest",
+        f"{DOCKER_ACCOUNT}/dashboard:latest",
         name="connectapi_dashboard",
         hostname=DASHBOARD_HOSTNAME,
         ports={80: 9934},
@@ -139,9 +144,10 @@ def start_containers(debug, conf):
 
 
 def stop_containers(debug):
-    prune = os.getenv("PRUNE", False) in (True, 1, "yes", "Yes", "y", "Y", "ok")
-
     logger.debug(f"docker network name: {DOCKER_NETWORK_NAME}")
+
+    prune = os.getenv("PRUNE", False) in (True, 1, "yes", "Yes", "y", "Y", "ok")
+    logger.debug("Prune is on")
 
     logger.info("Stopping containers...")
     client = docker.from_env()
@@ -154,8 +160,10 @@ def stop_containers(debug):
         container.stop()
         logger.info("Stopped")
     
-    if prune and os.path.isdir(f"/local/{MONGO_FILES_DIR}"):
+    if prune and os.path.isdir(f"{MONGO_FILES_DIR}"):
         logger.info("prunning all stored data")
-        os.removedirs(f"/local/{MONGO_FILES_DIR}")
+        code = os.system(f"sudo rm -r {str(get_root())}")
+        logger.debug(f"Prune exit code '{code}'")
     
     # TODO: delete docker network
+    logger.debug("TODO: delete docker network")

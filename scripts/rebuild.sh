@@ -3,4 +3,4 @@
 
 git pull
 
-docker build -t connectapi_install .
+docker build -t connectapihub/connectapi .
