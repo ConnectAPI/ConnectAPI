@@ -1,7 +1,7 @@
 import os
 import pathlib
 
-ROOT_PATH = '/var/lib'
+ROOT_PATH = '/opt'
 DATA_DIR_NAME = "/connectapi_data"
 
 

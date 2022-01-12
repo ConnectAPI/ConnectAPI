@@ -160,9 +160,9 @@ def stop_containers(debug):
         container.stop()
         logger.info("Stopped")
     
-    if prune and os.path.isdir(f"{MONGO_FILES_DIR}"):
+    if prune and os.path.isdir(str(get_root())):
         logger.info("prunning all stored data")
-        code = os.system(f"sudo rm -r {str(get_root())}")
+        code = os.system(f"rm -r {str(get_root())}")
         logger.debug(f"Prune exit code '{code}'")
     
     # TODO: delete docker network
