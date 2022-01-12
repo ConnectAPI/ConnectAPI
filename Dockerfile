@@ -10,6 +10,7 @@ COPY . .
 WORKDIR ./cli
 
 VOLUME /var/run/docker.sock
+VOLUME /local
 
 
 ENTRYPOINT ["python", "run.py"]

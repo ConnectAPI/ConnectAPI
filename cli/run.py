@@ -4,24 +4,21 @@ import sys
 from loguru import logger
 
 from logger import setup_logger
-from continers import start_containers, stop_containers
+from continers import setup_docker_network, setup_mongodb, start_containers, stop_containers
 from config import generate_conf
 
 
 DEBUG = os.getenv("DEBUG", False) in (True, 1, "yes", "Yes", "y", "Y", "ok")
 
 
-def setup_db():
-    logger.info("setting up db...")
-    # TODO: setup db
-
-
 def install_and_start_system():
     conf = generate_conf()
     logger.debug(conf.__dict__)
 
-    setup_db()
+    setup_docker_network()
+    setup_mongodb(DEBUG, conf)
     start_containers(debug=DEBUG, conf=conf)
+    
     logger.info(f"Running dashboard on http://{conf.user_config.domain}:{conf.user_config.dashboard_port}")
 
 
