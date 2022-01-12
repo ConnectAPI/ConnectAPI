@@ -32,6 +32,8 @@ nav:
   - ConnectAPI: index.md
   - Tutorial - User Guide:
     - tutorial/index.md
+  - CLI - actions:
+    - actions/uninstall.md
   - help.md
   - release-notes.md
 markdown_extensions:

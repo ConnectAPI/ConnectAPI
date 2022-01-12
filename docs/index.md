@@ -48,7 +48,12 @@ As **ConnectAPI** is running on [Docker](https://www.docker.com/) it will requir
 <div class="termy">
 
 ```console
-$ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -e MARKETPLACE_URL='https://market.boxs.ml' connectapi install
+$ docker run -it --rm \
+	 -v /var/run/docker.sock:/var/run/docker.sock \
+	 -v /opt:/var/lib:rw \
+	 -e MARKETPLACE_URL='https://market.boxs.ml' \
+	 --network host \
+	 connectapihub/connectapi install
 ```
 
 </div>
