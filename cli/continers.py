@@ -55,6 +55,8 @@ def setup_mongodb(debug, conf):
     if not os.path.isdir(MONGO_FILES_DIR):
         os.mkdir(MONGO_FILES_DIR)
 
+    logger.info(MONGO_FILES_DIR)
+
     mongo_container = client.containers.run(
         "mongo:latest",
         name="connectapi_mongodb",

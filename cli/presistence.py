@@ -1,7 +1,7 @@
 import os
 import pathlib
 
-ROOT_PATH = "/local"
+ROOT_PATH = '/var/lib'
 DATA_DIR_NAME = "/connectapi_data"
 
 
