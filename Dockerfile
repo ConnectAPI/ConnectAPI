@@ -5,7 +5,7 @@ COPY ./poetry.toml ./poetry.toml
 COPY ./pyproject.toml ./pyproject.toml
 RUN poetry install --no-dev
 
-COPY . .
+COPY ./cli ./cli
 
 WORKDIR ./cli
 
