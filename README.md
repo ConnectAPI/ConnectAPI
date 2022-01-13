@@ -45,10 +45,10 @@ As **ConnectAPI** is running on [Docker](https://www.docker.com/) it will requir
 
 ## Installation
 
-<div class="termy">
+<!-- <div class="termy"> -->
 
-```console
-$ docker run -it --rm \
+```shell
+docker run -it --rm \
 	 -v /var/run/docker.sock:/var/run/docker.sock \
 	 -v /opt:/var/lib:rw \
 	 -e MARKETPLACE_URL='https://market.boxs.ml' \
@@ -56,7 +56,7 @@ $ docker run -it --rm \
 	 connectapihub/connectapi install
 ```
 
-</div>
+<!-- </div> -->
 
 ## How to Use
 

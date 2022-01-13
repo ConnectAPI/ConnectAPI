@@ -34,6 +34,7 @@ nav:
     - tutorial/index.md
   - CLI - actions:
     - actions/uninstall.md
+    - actions/upgrading_version.md
   - help.md
   - release-notes.md
 markdown_extensions:
