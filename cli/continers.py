@@ -101,7 +101,7 @@ def start_containers(debug, conf):
         f"{DOCKER_ACCOUNT}/gateway:latest",
         name="connectapi_gateway",
         hostname=GATEWAY_HOSTNAME,
-        ports={80: 1687},
+        ports={80: conf.user_config.http_port},
         environment={
             "SECRET_KEY": conf.secret_key,
             "SUPER_USER_SECRET": conf.super_user_secret,
@@ -126,7 +126,7 @@ def start_containers(debug, conf):
         f"{DOCKER_ACCOUNT}/dashboard:latest",
         name="connectapi_dashboard",
         hostname=DASHBOARD_HOSTNAME,
-        ports={80: 9934},
+        ports={80: conf.user_config.dashboard_port},
         environment={
             "SECRET_KEY": conf.secret_key,
             "SUPER_USER_SECRET": conf.super_user_secret,

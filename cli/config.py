@@ -6,7 +6,6 @@ from dataclasses import dataclass, MISSING
 @dataclass
 class UserConfig:
     http_port: int = 80
-    https_port: int = 443
     dashboard_port: int = 6489
     domain: str = "localhost"
 
@@ -42,7 +41,7 @@ def generate_conf() -> SecretConfiguration:
         secret_key=secrets.token_urlsafe(20),
         super_user_secret=secrets.token_urlsafe(20),
         root_db_password=secrets.token_urlsafe(20),
-        gateway_db_password="gatewaypass",
-        dashboard_db_password="dashpassword",
+        gateway_db_password=secrets.token_urlsafe(20),
+        dashboard_db_password=secrets.token_urlsafe(20),
         user_config=user_config,
     )
