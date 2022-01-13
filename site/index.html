@@ -423,6 +423,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="actions/upgrading_version/" class="md-nav__link">
+        Ugrading version
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -584,17 +598,16 @@
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <p>As <strong>ConnectAPI</strong> is running on <a href="https://www.docker.com/">Docker</a> it will require you to install it on your machine.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="termy">
+<!-- <div class="termy"> -->
 
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>docker run -it --rm <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>docker run -it --rm <span class="se">\</span>
      -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\</span>
      -v /opt:/var/lib:rw <span class="se">\</span>
      -e <span class="nv">MARKETPLACE_URL</span><span class="o">=</span><span class="s1">&#39;https://market.boxs.ml&#39;</span> <span class="se">\</span>
      --network host <span class="se">\</span>
      connectapihub/connectapi install
 </code></pre></div>
-
-</div>
+<!-- </div> -->
 
 <h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
 <p>Like you see on the last line of the output the system is running a dashboard on port 6489 by default,</p>
