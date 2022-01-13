@@ -73,6 +73,10 @@ def setup_mongodb(debug, conf):
         auto_remove=not debug,
     )
 
+    if conf.loaded:
+        # The auth all ready setup, the configuration is loaded from privies setup
+        return
+    
     logger.info("Setting up db and services auth")
     client = MongoClient(f"mongodb://root:{conf.root_db_password}@127.0.0.1:27017")
     
