@@ -6,7 +6,8 @@ If you want to move to our cloud or just not using the system any more run this 
 docker run -it --rm \
 	 -v /var/run/docker.sock:/var/run/docker.sock \
 	 -v /opt:/var/lib:rw \
+	 -e PRUNE="no" \
 	 connectapihub/connectapi uninstall
 ```
 
-To remove all the data of the system just add ```-e PRUNE="yes" \``` to the command above.
+To remove all the data of the system just change the PRUNE value to "yse".
