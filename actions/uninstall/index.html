@@ -11,7 +11,7 @@
       
       
       
-        <link rel="canonical" href="https://connectapi.io/actions/uninstall/">
+        <link rel="canonical" href="https://www.connectapi.ml/actions/uninstall/">
       
       <link rel="icon" href="../../img/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
@@ -436,9 +436,10 @@
 <div class="highlight"><pre><span></span><code>docker run -it --rm <span class="se">\</span>
      -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\</span>
      -v /opt:/var/lib:rw <span class="se">\</span>
+     -e <span class="nv">PRUNE</span><span class="o">=</span><span class="s2">&quot;no&quot;</span> <span class="se">\</span>
      connectapihub/connectapi uninstall
 </code></pre></div>
-<p>To remove all the data of the system just add <code>-e PRUNE="yes" \</code> to the command above.</p>
+<p>To remove all the data of the system just change the PRUNE value to "yse".</p>
                 
               
               
