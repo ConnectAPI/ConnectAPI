@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://connectapi.io"><img src="/docs/img/github-social-preview.png" alt="ConnectAPI"></a>
+  <a href="https://www.connectapi.ml"><img src="img/logo-margin/logo-margin.png" alt="ConnectAPI"></a>
 </p>
 <p align="center">
     <em>A way to build your backend with components.</em>
@@ -12,7 +12,7 @@
 
 ---
 
-**Documentation**: <a href="https://connectapi.io" target="_blank">https://connectapi.io</a>
+**Documentation**: <a href="https://www.connectapi.ml" target="_blank">https://www.connectapi.ml</a>
 
 **Source Code**: <a href="https://github.com/connectapi/connectapi" target="_blank">https://github.com/connectapi/connectapi</a>
 

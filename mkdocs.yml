@@ -1,6 +1,6 @@
 site_name: ConnectAPI
 site_description: A way to build your backend with components.
-site_url: https://connectapi.io/
+site_url: https://www.connectapi.ml/
 theme:
   name: material
   palette:
