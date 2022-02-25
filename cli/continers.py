@@ -1,7 +1,5 @@
-from logging import log
 import secrets
 import os
-import time
 
 import docker
 from docker.errors import NotFound
@@ -70,7 +68,8 @@ def setup_mongodb(debug, conf):
         volumes=[f"{MONGO_FILES_DIR}:/data/db:rw"],
         network=DOCKER_NETWORK_NAME,
         detach=True,
-        auto_remove=not debug,
+        # auto_remove=not debug,
+        restart_policy=None if debug else {"Name": "unless-stopped"},
     )
 
     if conf.loaded:
@@ -117,8 +116,9 @@ def start_containers(debug, conf):
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove=not debug,
+        # auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
+        restart_policy=None if debug else {"Name": "unless-stopped"},
     )
     logger.info(f"Started {gateway_container.short_id}")
 
@@ -141,8 +141,9 @@ def start_containers(debug, conf):
         },
         volumes={'/var/run/docker.sock': {'bind': '/var/run/docker.sock', 'mode': 'rw'}},
         detach=True,
-        auto_remove=not debug,
+        # auto_remove=not debug,
         network=DOCKER_NETWORK_NAME,
+        restart_policy=None if debug else {"Name": "unless-stopped"},
     )
     logger.info(f"Started {dashboard_container.short_id}")
 
